@@ -3,6 +3,11 @@ const Koa = require("koa");
 const path = require("path");
 const Router = require("koa-router")();
 let KoaStatic = require("koa-static");
+
+/**获取本机ip地址 */
+let getIp = require("./getIp");
+const ip = getIp();
+
 let app = new Koa();
 let username = "";
 let uid = 0;
