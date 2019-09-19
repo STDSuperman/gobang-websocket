@@ -9,6 +9,7 @@ let username = null;
 let currentCamp;
 let isStep = false;
 let h3 = document.getElementsByTagName("h3")[0];
+let audio = document.getElementsByTagName("audio")[0];
 
 /**使用事件委托机制实现棋盘点击事件捕获 */
 function start(name) {
@@ -24,6 +25,7 @@ function start(name) {
       alert("当前位置不能摆放棋子");
       return;
     }
+    audio.play();
     ws.send(
       JSON.stringify({
         type: "step",

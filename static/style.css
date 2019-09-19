@@ -25,10 +25,10 @@ ul {
     height: 500px;
     border: solid 1px #ccc;
     margin: 10px 0px;
-    padding: 20px;
+    padding: 0px;
     position: relative;
     left: 50%;
-    transform: translateX(-320px);
+    transform: translateX(-300px);
 }
 
 ul::after {

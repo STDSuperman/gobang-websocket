@@ -1,3 +1,13 @@
+let preTarget;
+
+/**设置上一步的格子为橙色 */
+function setPre(target) {
+  if (preTarget) {
+    preTarget.style.border = "none";
+  }
+  preTarget = target;
+  target.style.border = "solid DarkOrange 1px";
+}
 ws.onopen = function() {
   console.log("连接成功");
 };
@@ -21,6 +31,7 @@ ws.onmessage = function(e) {
       } else {
         isStep = true;
       }
+      setPre(allDomList[res.msg.y][res.msg.x]);
       setPiece(allDomList[res.msg.y][res.msg.x], true);
       allPiecePosition[res.msg.x][res.msg.y] = res.name;
     }
