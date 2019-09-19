@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main">
+        <input type="text" id="name">
+        <input type="button" value="进入游戏" id='btn'>
+    </div>
+    <script type="text/javascript">
+        let submit = document.getElementById("btn");
+        submit.onclick = function () {
+            let data = "name=" + document.getElementById('name').value;
+            ajax('http://192.168.1.81:3000/submit', 'post', data).then(data => {
+                if (data === 'OK') {
+                    location.href = 'http://192.168.1.81:3000/index'
+                }
+            })
+        }
+        /**手写ajax */
+        function ajax(url, method, data) {
+            return new Promise((resolve, reject) => {
+                let xmlhttp;
+                if (XMLHttpRequest) {
+                    xmlhttp = new XMLHttpRequest();
+                } else if (ActiveXObject) {
+                    let arr = ["MSXML2.XMLHTTP", "Microsoft.XMLHTTP"];
+                    try {
+                        xmlhttp = new ActiveXObject(arr[0]);
+                    } catch (error) {
+                        xmlhttp = new ActiveXObject(arr[1]);
+                    }
+                }
+                xmlhttp.open(method, url, true);
+                xmlhttp.setRequestHeader("Content-Type", "application/json;charset=utf8;")
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState === 4) {
+                        if (xmlhttp.status >= 200 && xmlhttp.status < 304) {
+                            resolve(xmlhttp.responseText);
+                        } else {
+                            reject();
+                        }
+                    }
+                };
+                xmlhttp.onerror = e => reject(e);
+                xmlhttp.send(data);
+            });
+        }
+    </script>
+</body>
+
+</html>
