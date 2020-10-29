@@ -17,9 +17,9 @@
         let submit = document.getElementById("btn");
         submit.onclick = function () {
             let data = "name=" + document.getElementById('name').value;
-            ajax('http://192.168.1.81:3000/submit', 'post', data).then(data => {
+            ajax('http://localhost:3000/submit', 'post', data).then(data => {
                 if (data === 'OK') {
-                    location.href = 'http://192.168.1.81:3000/index'
+                    location.href = 'http://localhost:3000/index'
                 }
             })
         }

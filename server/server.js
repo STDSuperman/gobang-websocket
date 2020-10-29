@@ -19,7 +19,7 @@ Router.get("/", async (ctx, next) => {
 });
 
 Router.get("/login", async ctx => {
-  ctx.body = fs.readFileSync("../login.html").toString();
+  ctx.body = fs.readFileSync(path.resolve(__dirname, "../login.html")).toString();
 });
 Router.post("/submit", async ctx => {
   if (ctx.cookies.get("userId")) {
@@ -54,7 +54,7 @@ Router.get("/index", async ctx => {
     userList[uid] = username;
     uid++;
   }
-  let data = fs.readFileSync("../index.html");
+  let data = fs.readFileSync(path.resolve(__dirname, "../index.html"));
   ctx.body = data.toString();
 });
 
