@@ -1,4 +1,4 @@
-let ws = new WebSocket("ws://192.168.1.81:3001");
+let ws = new WebSocket("ws://localhost:3001");
 let ul = document.getElementsByTagName("ul")[0];
 let checkerboardSize = 400; //当前场次格子数
 let boundary = Math.sqrt(checkerboardSize); //获取边界长度
