@@ -22,7 +22,8 @@ Router.get("/login", async ctx => {
   ctx.body = fs.readFileSync(path.resolve(__dirname, "../login.html")).toString();
 });
 Router.post("/submit", async ctx => {
-  if (ctx.cookies.get("userId")) {
+  const userId = ctx.cookies.get("userId");
+  if (userId || userList[userId]) {
     ctx.body = "OK";
     return;
   }
@@ -54,7 +55,8 @@ Router.post("/submit", async ctx => {
   }
 });
 Router.get("/index", async ctx => {
-  if (!ctx.cookies.get("userId")) {
+  const userId = ctx.cookies.get("userId");
+  if (!userId || !userList[userId]) {
     ctx.redirect('/login')
   }
   let data = fs.readFileSync(path.resolve(__dirname, "../index.html"));
