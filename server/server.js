@@ -29,6 +29,11 @@ Router.post("/submit", async ctx => {
   await parsePostData().then(data => {
     ctx.username = username = data.split("=")[1];
   });
+
+  ctx.cookies.set("userId", uid);
+  userList[uid] = username;
+  uid++;
+
   ctx.body = "OK";
   /**解析post数据 */
   function parsePostData() {
@@ -50,15 +55,15 @@ Router.post("/submit", async ctx => {
 });
 Router.get("/index", async ctx => {
   if (!ctx.cookies.get("userId")) {
-    ctx.cookies.set("userId", uid);
-    userList[uid] = username;
-    uid++;
+    ctx.redirect('/login')
   }
   let data = fs.readFileSync(path.resolve(__dirname, "../index.html"));
   ctx.body = data.toString();
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log(`Please visit http://${ip}:3000`);
+});
 
 app.use(Router.routes()); /*启动路由*/
 app.use(Router.allowedMethods());

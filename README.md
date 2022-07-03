@@ -1,2 +1,2 @@
 # gobang
-基于WebSocket实现联机五子棋
+基于 WebSocket 实现联机五子棋。

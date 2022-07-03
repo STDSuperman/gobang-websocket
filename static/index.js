@@ -57,8 +57,9 @@ function setPiece(target, isEnemy = false) {
       (currentCamp == 0 ? "./white_piece.jpg" : "./black_piece.jpg") +
       ") no-repeat";
   }
-  target.style.backgroundSize = "20px 20px";
+  target.style.backgroundSize = "30px 30px";
   target.style.backgroundPosition = "center center";
+  target.style.borderRadius = '50%';
   allPiecePosition[x][y] = username;
 }
 
